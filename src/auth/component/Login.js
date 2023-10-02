@@ -1,3 +1,5 @@
+// login.js
+
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
@@ -35,7 +37,8 @@ const Login = (props) => {
             <img src={user.picture} alt={user.name} style={{ width: "100px", height: "100px", borderRadius: "50%" }}></img>
           )}
 
-          <h3>{user.name}</h3>       
+          <h3>{user.name}</h3>
+          {user.email && <p>Email: {user.email}</p>} {/* Display email if available */}
         </div>
       )}
       {user && <Con user={user} />} {/* Render the Con component */}
