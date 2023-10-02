@@ -15,11 +15,10 @@ function Con({user}) {
 
   // If the 'user' prop is available, update the form fields with user data
   if (user) {
-    initialFormData.name = user.profileObj.name || '';
-    initialFormData.email = user.profileObj.email || '';
+    initialFormData.name = user.name || '';
+    initialFormData.email = user.email || '';
     // ... update other form fields accordingly
   }
-
   const [formData, setFormData] = useState(initialFormData);
   
   // Function to handle input changes
@@ -87,17 +86,13 @@ function Con({user}) {
 
   return (
     <main>
-      <header>
-        <h1 id="title">Survey Form</h1>
-        <p id="description">Thank You For Taking Your Time To Give Us Feedback</p>
-      </header>
-      
-      {/* <Feature/> */}
+     {user.name && user.email ? (
+   
       <form id="survey-form" onSubmit={handleSubmit}>
         {/* Form fields */}
-        {user ? (
+        {user.name  ? (
         <div className="user-info">
-          <h5>Name : {user.profileObj.name}</h5>  
+          <h5>Name : {user.name}</h5>  
         </div>
       ) : (
         <div className="form-group">
@@ -117,7 +112,7 @@ function Con({user}) {
         )}
 {user ? (
         <div className="user-info">
-          <p>Email: {user.profileObj.email}</p>
+          <p>Email: {user.email}</p>
         </div>
 
       ) : (
@@ -238,7 +233,8 @@ function Con({user}) {
         </div>
       </form>
 
-    
+) : null}
+
     </main>
   );
 }
