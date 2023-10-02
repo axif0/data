@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import Feature from './feature';
 
-function Con({user}) {
+function Con({ user }) {
   // Define initial form data state
   const initialFormData = {
-    name: '',
-    email: '',
+    name: user.name || '',
+    email: user.email || '',
     age: '',
     occupation: '',
     rating: 'never',
@@ -13,14 +13,17 @@ function Con({user}) {
     remark: '',
   };
 
-  // If the 'user' prop is available, update the form fields with user data
-  if (user) {
-    initialFormData.name = user.name || '';
-    initialFormData.email = user.email || '';
-    // ... update other form fields accordingly
-  }
   const [formData, setFormData] = useState(initialFormData);
-  
+
+  // Update form data when user changes
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      name: user.name || '',
+      email: user.email || '',
+    }));
+  }, [user]);
+
   // Function to handle input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -89,48 +92,15 @@ function Con({user}) {
      {user.name && user.email ? (
    
       <form id="survey-form" onSubmit={handleSubmit}>
-        {/* Form fields */}
-        {user.name  ? (
+      
         <div className="user-info">
           <h5>Name : {user.name}</h5>  
         </div>
-      ) : (
-        <div className="form-group">
-          <label htmlFor="name" id="name-label">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Enter Your Name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        )}
-{user ? (
+    
         <div className="user-info">
           <p>Email: {user.email}</p>
         </div>
 
-      ) : (
-  <div className="form-group">
-  <label htmlFor="email" id="email-label">
-    Email
-  </label>
-  <input
-    type="email"
-    name="email"
-    id="email"
-    placeholder="Enter Your Email"
-    value={formData.email}
-    onChange={handleInputChange}
-    required
-  />
-        </div>
-)}
 <div className="form-group">
   <label htmlFor="age" id="age-label">
     Age
