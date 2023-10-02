@@ -1,14 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css'
-import ContactForm from './CgKnow/ContactForm'
-
-export default function App() {
+import Con from './testing/test';
+// import Feture from './testing/feature';
+import Home from './testing/home';
+ 
+const App = () => {
   return (
     <div>
-        <ContactForm/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/questions" element={<Con/>} />
+          {/* <Route path="/" element={<Feture/>} /> */}
+          <Route path="/" element={<Home/>} />
+        
+        </Routes>
+      </BrowserRouter>
     </div>
-  )
-}
+  );
+};
 
-
-
+export default App;
