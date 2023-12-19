@@ -1,0 +1,13 @@
+.survey-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+  
+  .survey-content {
+    text-align: center;
+  }
+  
+  /* Add any other styles as needed */
+  
